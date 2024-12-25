@@ -1,3 +1,8 @@
+"""
+提取 Quick, Draw! 資料集中的圖片
+每種抓取 300 張圖片
+"""
+
 import numpy as np
 import pandas as pd
 import os
@@ -32,7 +37,7 @@ def download_data(category):
 # for category in categories:
 #     download_data(category)
 
-def load_and_process_data(categories, samples_per_category=300):
+def load_and_process_data(categories, samples_per_category=500):
     all_images = []
     all_labels = []
     
@@ -83,9 +88,9 @@ def save_processed_data(X, y, categories, base_path='processed_data'):
 
 # 儲存處理後的數據
 
-# 執行函數
+# X: 圖片資料、y: 標籤資料
 X, y = load_and_process_data(categories)
-print(f"數據形狀: {X.shape}")
-print(f"標籤形狀: {y.shape}")
+# print(f"數據形狀: {X.shape}")
+# print(f"標籤形狀: {y.shape}")
 
 save_processed_data(X, y, categories)
