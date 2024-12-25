@@ -1,3 +1,7 @@
 quickdraw_data/
 processed_data/
 testphoto/
+doodle_train/
+test.py
+newestpaint.png
+__pycache__/
