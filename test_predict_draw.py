@@ -17,9 +17,8 @@ def preprocess_image(image_path):
     img_array = img_array.reshape(1, 28, 28, 1)  # 重塑為模型輸入格式
     return img_array
 
-def predict_drawing(model_path, image_path):
+def predict_drawing(model, image_path):
     # 載入模型
-    model = tf.keras.models.load_model(model_path)
     
     # 預處理圖片
     processed_image = preprocess_image(image_path)
@@ -40,6 +39,7 @@ if __name__ == "__main__":
     image_path = sys.argv[1]
     
     try:
+        model = tf.keras.models.load_model(model_path)
         predicted_class, confidence = predict_drawing(model_path, image_path)
         print(f"預測結果: {predicted_class}")
         print(f"信心度: {confidence:.2f}%")

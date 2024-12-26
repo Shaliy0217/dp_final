@@ -3,9 +3,12 @@ os.environ['TF_ENABLE_ONEDNN_OPTS'] = '0'  # 禁用 oneDNN 操作
 import cv2
 import numpy as np
 from Hand_Detect import NumberofFingers
+import tensorflow as tf
+import test_predict_draw as predict
 
 cap = cv2.VideoCapture(0) #數值是0代表讀取電腦的攝影機鏡頭
 _, image = cap.read() #讀取攝影機的畫面
+model = tf.keras.models.load_model("QuickDraw_v2.keras") #載入模型
 
 drawing = False #紀錄變數畫畫開始變數
 startdrawing = False
@@ -46,7 +49,11 @@ while cap.isOpened(): #每一楨影像都可以視為一張照片 一次while迴
             ymax=600
         paintWindow = paintWindow[ymin:ymax, xmin:xmax]
         cv2.imwrite("newestpaint.png", paintWindow) #save
-        # pred_class = quickDraw.draw_detect(paintWindow)
+        pred_class, confidence = predict.predict_drawing(model, "newestpaint.png") #predict
+        if confidence > 50:
+            print(f"預測結果: {pred_class}")
+        else:
+            print("無法辨識，請再試一次><")
 
         #clear&reload
         drawing=False
