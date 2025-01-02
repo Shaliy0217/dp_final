@@ -12,3 +12,8 @@ TrainQuickDraw.py: 訓練模型 QuickDraw_v2.keras，圖片原大小28*28、池�
 test_predict_drawing.py: predict_drawing函式可輸入一張
 
 Hand_Detect.py: 偵測有幾隻手指舉著，簡化成食指舉著(畫畫)、手張開(結束畫畫)、拳頭(暫停畫畫)
+
+
+game.py: 遊戲運行主程式
+to_model.py: 使用訓練好的模型來判斷圖片
+demo_ui.py: 遊戲的ui介面
